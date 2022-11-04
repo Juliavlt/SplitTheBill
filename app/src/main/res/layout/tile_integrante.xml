@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/integranteTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/nome"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/valorPagoTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/valor_pago"
+        android:hint="@string/valor_pago"
+        />
+
+    <TextView
+        android:id="@+id/valorReceberTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/valor_a_receber"
+        android:text="@string/valor_a_receber" />
+
+    <TextView
+        android:id="@+id/valorAPagarTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/valor_a_pagar"
+        android:text="@string/valor_a_pagar" />
+</LinearLayout>

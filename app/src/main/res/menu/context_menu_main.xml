@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/removeIntegranteMi"
+        android:title="@string/remover_integrante">
+    </item>
+    <item android:id="@+id/editIntegranteMi"
+        android:title="@string/editar_integrante">
+    </item>
+</menu>
