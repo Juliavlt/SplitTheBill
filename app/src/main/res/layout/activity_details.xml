@@ -24,6 +24,7 @@
         android:id="@+id/valorReceberTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:hint="@string/valor_a_receber"
         android:text="@string/valor_a_receber" />
 
@@ -31,6 +32,7 @@
         android:id="@+id/valorAPagarTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:hint="@string/valor_a_pagar"
         android:text="@string/valor_a_pagar" />
 </LinearLayout>

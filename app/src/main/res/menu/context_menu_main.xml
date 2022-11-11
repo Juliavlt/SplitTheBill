@@ -6,4 +6,7 @@
     <item android:id="@+id/editIntegranteMi"
         android:title="@string/editar_integrante">
     </item>
+    <item android:id="@+id/detailsIntegranteMi"
+        android:title="@string/detalhes_integrante">
+    </item>
 </menu>

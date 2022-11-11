@@ -8,6 +8,7 @@ data class Integrante(
     var id: Int,
     var nome: String,
     var valorPago: Double,
+    var valorAPagar: Double,
     var valorAReceber: Double,
     var itemComprado: String
 ) : Parcelable

@@ -12,4 +12,5 @@
     <string name="editar_integrante">editar integrante</string>
     <string name="adicionar_integrante">adicionar integrante</string>
     <string name="valor_a_pagar">Valor a pagar</string>
+    <string name="detalhes_integrante">detalhes</string>
 </resources>

@@ -40,6 +40,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/valorPagoEt" />
 
+    <EditText
+        android:id="@+id/valorReceberTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:hint="@string/valor_a_receber"
+        android:text="@string/valor_a_receber"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemCompradoEt"
+        />
+
+    <EditText
+        android:id="@+id/valorAPagarTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:hint="@string/valor_a_pagar"
+        android:text="@string/valor_a_pagar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/valorReceberTv"
+        />
     <Button
         android:id="@+id/salvarBt"
         android:layout_width="0dp"
@@ -48,4 +71,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/itemCompradoEt" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
