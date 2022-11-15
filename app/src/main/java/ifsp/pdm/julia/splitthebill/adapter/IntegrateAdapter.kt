@@ -31,7 +31,7 @@ class IntegrateAdapter(
                 false
             )
             integranteTileView = tcb.root;
-            val tileIntegrantesHolder = TileIntegrantesHolder(tcb.integranteTv, tcb.valorPagoTv, tcb.valorReceberTv, tcb.valorAPagarTv, tcb.itemCompradoTv) //cria um holder e faz ele apontar pr os obj internos da celula
+            val tileIntegrantesHolder = TileIntegrantesHolder(tcb.integranteTv, tcb.valorPagoTv, tcb.valorReceberTv, tcb.valorAPagarTv, tcb.itemCompradoTv)
             integranteTileView.tag = tileIntegrantesHolder
         }
 

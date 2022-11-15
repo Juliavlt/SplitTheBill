@@ -27,13 +27,13 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var integranteAdapter: IntegrateAdapter
 
-    private lateinit var carl: ActivityResultLauncher<Intent>//criação do objeto que trata os retorno de telas secundarias
+    private lateinit var carl: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(amb.root)
 
-        integranteAdapter= IntegrateAdapter(this, integrantesList) //settando o Adapter com o listView
+        integranteAdapter= IntegrateAdapter(this, integrantesList)
         amb.integrantesLv.adapter = integranteAdapter
 
         carl = registerForActivityResult(
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
                 val contact = resultado.data?.getParcelableExtra<Integrante>(EXTRA_MEMBER)
                 contact?.let { _contact ->
                     if(integrantesList.any { it.id == _contact.id }){
-                        val position = integrantesList.indexOfFirst { it.id == _contact.id } //pegar posição da lista
+                        val position = integrantesList.indexOfFirst { it.id == _contact.id }
                         integrantesList[position] = _contact
                     } else {
                         integrantesList.add(_contact)
@@ -102,7 +102,7 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.editIntegranteMi -> {
                 val contact = integrantesList[position]
-                val contactIntent = Intent(this, IntegranteActivity::class.java) //criar intent pra ir pra proxima tela
+                val contactIntent = Intent(this, IntegranteActivity::class.java)
                 contactIntent.putExtra(EXTRA_MEMBER, contact)
                 carl.launch(contactIntent)
                 true
