@@ -11,13 +11,12 @@ import ifsp.pdm.julia.splitthebill.R
 import ifsp.pdm.julia.splitthebill.databinding.ActivityDetailsBinding
 import ifsp.pdm.julia.splitthebill.model.Integrante
 
-class DetailsAdapter(
+class IntegrateAdapter(
     context: Context,
     private val integranteList: MutableList<Integrante>
     ): ArrayAdapter<Integrante>(context, R.layout.activity_details, integranteList) {
-    //é um jeito de escrever um construtor
 
-    private data class TileIntegrantesHolder(val name:TextView, val valorPago: TextView, val valorAReceber: TextView, val valorAPagar: TextView)
+    private data class TileIntegrantesHolder(val name:TextView, val valorPago: TextView, val valorAReceber: TextView, val valorAPagar: TextView, val itemComprado: TextView)
 
     private lateinit var tcb: ActivityDetailsBinding
 
@@ -32,13 +31,14 @@ class DetailsAdapter(
                 false
             )
             integranteTileView = tcb.root;
-            val tileIntegrantesHolder = TileIntegrantesHolder(tcb.integranteTv, tcb.valorPagoTv, tcb.valorReceberTv, tcb.valorAPagarTv) //cria um holder e faz ele apontar pr os obj internos da celula
-            integranteTileView.tag = tileIntegrantesHolder //associar o holder a celula
+            val tileIntegrantesHolder = TileIntegrantesHolder(tcb.integranteTv, tcb.valorPagoTv, tcb.valorReceberTv, tcb.valorAPagarTv, tcb.itemCompradoTv) //cria um holder e faz ele apontar pr os obj internos da celula
+            integranteTileView.tag = tileIntegrantesHolder
         }
 
-        with (integranteTileView.tag as TileIntegrantesHolder){ //troca o valor dos objs que o holder esta apontando
+        with (integranteTileView.tag as TileIntegrantesHolder){
             tcb.valorPagoTv.text = integrante.valorPago.toString()
             tcb.integranteTv.text = integrante.nome
+            tcb.itemCompradoTv.text = integrante.itemComprado?: ""
             tcb.valorReceberTv.text = integrante.valorAReceber.toString()
             tcb.valorAPagarTv.text =integrante.valorAPagar.toString()
         }

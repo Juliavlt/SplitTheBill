@@ -11,8 +11,7 @@ import android.widget.AdapterView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import ifsp.pdm.julia.splitthebill.R
-import ifsp.pdm.julia.splitthebill.adapter.DetailsAdapter
-import ifsp.pdm.julia.splitthebill.databinding.ActivityDetailsBinding
+import ifsp.pdm.julia.splitthebill.adapter.IntegrateAdapter
 import ifsp.pdm.julia.splitthebill.databinding.ActivityMainBinding
 import ifsp.pdm.julia.splitthebill.model.Constant
 import ifsp.pdm.julia.splitthebill.model.Constant.EXTRA_MEMBER
@@ -24,11 +23,9 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
-    // Data source
     private val integrantesList: MutableList<Integrante> = mutableListOf()
 
-    // Adapter
-    private lateinit var integranteAdapter: DetailsAdapter
+    private lateinit var integranteAdapter: IntegrateAdapter
 
     private lateinit var carl: ActivityResultLauncher<Intent>//criação do objeto que trata os retorno de telas secundarias
 
@@ -36,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(amb.root)
 
-        integranteAdapter= DetailsAdapter(this, integrantesList) //settando o Adapter com o listView
+        integranteAdapter= IntegrateAdapter(this, integrantesList) //settando o Adapter com o listView
         amb.integrantesLv.adapter = integranteAdapter
 
         carl = registerForActivityResult(
@@ -45,11 +42,11 @@ class MainActivity : AppCompatActivity() {
             if (resultado.resultCode == RESULT_OK) {
                 val contact = resultado.data?.getParcelableExtra<Integrante>(EXTRA_MEMBER)
                 contact?.let { _contact ->
-                    if(integrantesList.any { it.id == _contact.id }){ //se o id ja existe
+                    if(integrantesList.any { it.id == _contact.id }){
                         val position = integrantesList.indexOfFirst { it.id == _contact.id } //pegar posição da lista
-                        integrantesList[position] = _contact //edita
+                        integrantesList[position] = _contact
                     } else {
-                        integrantesList.add(_contact)//cria um novo
+                        integrantesList.add(_contact)
                     }
                     shareTheBill()
                 }
@@ -63,9 +60,8 @@ class MainActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                //todo manter integrantes list aqui
                 val contact = integrantesList[position]
-                val contactIntent = Intent(this@MainActivity, MemberActivity::class.java)
+                val contactIntent = Intent(this@MainActivity, IntegranteActivity::class.java)
                 contactIntent.putExtra(EXTRA_MEMBER, contact)
                 contactIntent.putExtra(Constant.VIEW_MEMBER, true)
                 startActivity(contactIntent)
@@ -81,8 +77,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId) {
             R.id.addIntegranteMi -> {
-                // abre a tela de contato
-                carl.launch(Intent(this, MemberActivity::class.java))
+                carl.launch(Intent(this, IntegranteActivity::class.java))
                 true
             }
             else -> { false }
@@ -107,14 +102,13 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.editIntegranteMi -> {
                 val contact = integrantesList[position]
-                val contactIntent = Intent(this, MemberActivity::class.java) //criar intent pra ir pra proxima tela
+                val contactIntent = Intent(this, IntegranteActivity::class.java) //criar intent pra ir pra proxima tela
                 contactIntent.putExtra(EXTRA_MEMBER, contact)
-                //startActivity(contactIntent) //so abre a tela
                 carl.launch(contactIntent)
                 true
             } R.id.detailsIntegranteMi -> {
                 val contact = integrantesList[position]
-                val contactIntent = Intent(this@MainActivity, MemberActivity::class.java)
+                val contactIntent = Intent(this@MainActivity, IntegranteActivity::class.java)
                 contactIntent.putExtra(EXTRA_MEMBER, contact)
                 contactIntent.putExtra(Constant.VIEW_MEMBER, true)
                 startActivity(contactIntent)
@@ -126,17 +120,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun shareTheBill(){
-        // Passsar na lista e calcular o total e a quantia dividida
         var valorTotal: Double =  0.0
         for (i in integrantesList) {
             valorTotal+=i.valorPago;
         }
-        // Passar na lista novamente e atualizar com os novos valores
         for (i in integrantesList) {
             i.valorAReceber = valorAReceber(integrantesList.size, valorTotal, i.valorPago)
             i.valorAPagar = valorAPagar(integrantesList.size, valorTotal, i.valorPago)
         }
-        // Notificar o adapter das alterações
         integranteAdapter.notifyDataSetChanged()
         println(integrantesList)
     }

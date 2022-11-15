@@ -21,6 +21,15 @@
         />
 
     <TextView
+        android:id="@+id/itemCompradoTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="@string/item_comprado"
+        android:hint="@string/item_comprado"
+        />
+
+    <TextView
         android:id="@+id/valorReceberTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

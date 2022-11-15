@@ -14,7 +14,7 @@
         android:theme="@style/Theme.SplitTheBill"
         tools:targetApi="31">
         <activity
-            android:name=".view.MemberActivity"
+            android:name=".view.IntegranteActivity"
             android:exported="true" />
         <activity
             android:name=".view.MainActivity"
